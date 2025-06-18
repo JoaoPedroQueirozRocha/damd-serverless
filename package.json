@@ -11,8 +11,6 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@azure/functions": "^4.5.0",
-        "express": "^5.1.0",
-        "nodemon": "^3.1.10"
+        "@azure/functions": "^4.5.0"
     }
 }
