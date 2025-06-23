@@ -1,11 +1,12 @@
 const { app } = require('@azure/functions');
 
-app.http('httpTest', {
-    methods: ['GET'],
+app.http('orders-api', {
+    methods: ['POST'],
     authLevel: 'anonymous',
-    route: 'message',
+    route: 'orders',
     handler: async (request, context) => {
-        context.log('HTTP trigger function processed a request.');
+        const body = await request.json();
+        const order = body.order;
 
         return {
             status: 200,
@@ -13,10 +14,7 @@ app.http('httpTest', {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                message: 'Hello from Azure Functions!',
-                timestamp: new Date().toISOString(),
-                status: 'success',
-                function: 'httpTest',
+                order: { ...order, status: 'success' },
             }),
         };
     },
